@@ -2,11 +2,29 @@ from flask import (
     Blueprint, flash, g, redirect, render_template, request, url_for
 )
 from werkzeug.exceptions import abort
+import click
 
 from flaskr.auth import login_required
 from flaskr.db import get_db
 
 bp = Blueprint('blog', __name__)
+
+# def shortenbody(posts):
+#     for post in posts:
+#         words = post['body'].split(" ")
+#         if len(words) > 50:
+#             post['body'] = " ".join(words[:50]) + "..."
+#     return posts
+
+
+# def addinfo(posts):
+#     others = {}
+#     for post in posts:
+#         words = post['body'].split(" ")
+#         others[post['title']] = {}
+#         if len(words) > 50:
+#             others[post['title']]['short'] = " ".join(words[:50]) + "..."
+#     return others
 
 @bp.route('/')
 def index():
@@ -16,6 +34,9 @@ def index():
         ' FROM post p JOIN user u ON p.author_id=u.id'
         ' ORDER BY created DESC'
     ).fetchall()
+    click.echo(type(posts))
+    # others = addinfo(posts)
+    # posts = shortenbody(posts)
     return render_template('blog/index.html', posts=posts)
 
 @bp.route('/create', methods=('GET','POST'))
