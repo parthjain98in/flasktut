@@ -20,11 +20,7 @@
         {% endif %}
       </header>
       <p class="body postbody">
-        {% if (length(post['body']) < 50) %}
         {{ post[body] }}
-        {% else %}
-        {{ post['body'][:50] + '...' }}
-        {% endif %}
       </p>
     </article>
     {% if not loop.last %}
