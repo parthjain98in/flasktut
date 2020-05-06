@@ -1,1 +1,1 @@
-web:gunicorn startit:app
+web:gunicorn flaskr:app
