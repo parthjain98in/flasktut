@@ -39,3 +39,9 @@ def create_app(test_config=None):
     #     return 'Hello, World!'
 
     return app
+
+# if __name__ == 'main':
+#     app = create_app()
+#     app.run()
+
+app = create_app()
